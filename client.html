@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Simple Chat</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				background-color: #f0f0f0;
+				margin: 0;
+				padding: 0;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+			}
+
+			#chatContainer {
+				background-color: #fff;
+				border-radius: 5px;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+				padding: 20px;
+				width: 400px;
+			}
+
+			#chatArea {
+				height: 300px;
+				overflow-y: scroll;
+				border: 1px solid #ccc;
+				border-radius: 5px;
+				padding: 10px;
+				margin-bottom: 10px;
+			}
+
+			#messageInput {
+				width: calc(100% - 75px);
+				padding: 10px;
+				border: 1px solid #ccc;
+				border-radius: 5px 0 0 5px;
+				margin-right: 10px;
+				outline: none;
+			}
+
+			#sendButton {
+				width: 75px;
+				padding: 10px;
+				border: none;
+				border-radius: 0 5px 5px 0;
+				background-color: #4caf50;
+				color: #fff;
+				cursor: pointer;
+				outline: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="chatContainer">
+			<div id="chatArea"></div>
+			<div style="display: flex">
+				<input
+					type="text"
+					id="messageInput"
+					placeholder="Type your message..."
+				/>
+				<button id="sendButton">Send</button>
+			</div>
+		</div>
+
+		<script>
+			const chatArea = document.getElementById('chatArea');
+			const messageInput = document.getElementById('messageInput');
+			const sendButton = document.getElementById('sendButton');
+
+			const socket = new WebSocket('wss://chatapp-1ich.onrender.com');
+
+			socket.onmessage = (event) => {
+				const message = event.data;
+				displayMessage(message);
+			};
+
+			socket.onerror = (error) => {
+				console.error('WebSocket error:', error);
+			};
+
+			sendMessage = () => {
+				const message = messageInput.value;
+				if (message.trim() !== '') {
+					socket.send(message);
+					messageInput.value = '';
+				}
+			};
+
+			displayMessage = (message) => {
+				const messageElement = document.createElement('div');
+				messageElement.textContent = message;
+				chatArea.appendChild(messageElement);
+				chatArea.scrollTop = chatArea.scrollHeight;
+			};
+
+			// Send message when Enter key is pressed
+			messageInput.addEventListener('keyup', (event) => {
+				if (event.key === 'Enter') {
+					event.preventDefault();
+					sendMessage();
+				}
+			});
+		</script>
+	</body>
+</html>
