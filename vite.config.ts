@@ -6,6 +6,8 @@ export default defineConfig({
   plugins: [react()],
   base: '/',
   build: {
+    // Enable source maps for debugging (fixes PageSpeed warning)
+    sourcemap: true,
     // Code splitting for better caching
     rollupOptions: {
       output: {
@@ -16,10 +18,12 @@ export default defineConfig({
         },
       },
     },
-    // Target modern browsers only
+    // Target modern browsers only (smaller bundles)
     target: 'esnext',
     // Increase chunk size warning limit (Three.js is large)
     chunkSizeWarningLimit: 1000,
+    // CSS code splitting
+    cssCodeSplit: true,
   },
   // Optimize dependencies
   optimizeDeps: {
