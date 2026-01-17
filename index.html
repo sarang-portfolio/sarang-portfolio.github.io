@@ -14,15 +14,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#030014" />
     
-    <!-- Canonical URL - UPDATE THIS TO YOUR DOMAIN -->
-    <link rel="canonical" href="https://sarangkulkarni.github.io/" />
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://sarang-portfolio.github.io/" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://sarangkulkarni.github.io/" />
+    <meta property="og:url" content="https://sarang-portfolio.github.io/" />
     <meta property="og:title" content="Sarang Kulkarni | Software Developer | Full Stack Engineer" />
     <meta property="og:description" content="Passionate Software Developer specializing in TypeScript, Python, Node.js. Building elegant solutions to complex problems." />
-    <meta property="og:image" content="https://sarangkulkarni.github.io/og-image.png" />
+    <meta property="og:image" content="https://sarang-portfolio.github.io/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:site_name" content="Sarang Kulkarni Portfolio" />
@@ -30,10 +30,10 @@
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://sarangkulkarni.github.io/" />
+    <meta name="twitter:url" content="https://sarang-portfolio.github.io/" />
     <meta name="twitter:title" content="Sarang Kulkarni | Software Developer" />
     <meta name="twitter:description" content="Passionate Software Developer specializing in TypeScript, Python, Node.js. Building elegant solutions to complex problems." />
-    <meta name="twitter:image" content="https://sarangkulkarni.github.io/og-image.png" />
+    <meta name="twitter:image" content="https://sarang-portfolio.github.io/og-image.png" />
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -42,9 +42,9 @@
     <!-- Preconnect to external resources for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://www.googletagmanager.com" />
     
-    <!-- DNS Prefetch -->
+    <!-- DNS Prefetch for analytics (loaded after page) -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
     <link rel="dns-prefetch" href="https://www.google-analytics.com" />
     
     <!-- JSON-LD Structured Data for SEO -->
@@ -53,8 +53,8 @@
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Sarang Kulkarni",
-      "url": "https://sarangkulkarni.github.io",
-      "image": "https://sarangkulkarni.github.io/profile.jpg",
+      "url": "https://sarang-portfolio.github.io",
+      "image": "https://sarang-portfolio.github.io/profile.jpg",
       "jobTitle": "Software Developer",
       "worksFor": {
         "@type": "Organization",
@@ -75,7 +75,7 @@
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "Sarang Kulkarni Portfolio",
-      "url": "https://sarangkulkarni.github.io",
+      "url": "https://sarang-portfolio.github.io",
       "description": "Portfolio website of Sarang Kulkarni, a Software Developer specializing in full-stack web development.",
       "author": {
         "@type": "Person",
@@ -84,100 +84,9 @@
     }
     </script>
     
-    <!-- Google Analytics 4 - REPLACE G-XXXXXXXXXX WITH YOUR MEASUREMENT ID -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4K5Z82G3M6"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-4K5Z82G3M6', {
-        page_title: document.title,
-        page_location: window.location.href,
-        anonymize_ip: true,
-        cookie_flags: 'SameSite=None;Secure'
-      });
-      
-      // Track scroll depth
-      let scrollDepthMarkers = [25, 50, 75, 100];
-      let scrollDepthReached = [];
-      window.addEventListener('scroll', function() {
-        const scrollPercent = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
-        scrollDepthMarkers.forEach(function(marker) {
-          if (scrollPercent >= marker && !scrollDepthReached.includes(marker)) {
-            scrollDepthReached.push(marker);
-            gtag('event', 'scroll_depth', {
-              'event_category': 'engagement',
-              'event_label': marker + '%',
-              'value': marker
-            });
-          }
-        });
-      });
-      
-      // Track time on page
-      let timeOnPage = 0;
-      setInterval(function() {
-        timeOnPage += 30;
-        if (timeOnPage === 30 || timeOnPage === 60 || timeOnPage === 180 || timeOnPage === 300) {
-          gtag('event', 'time_on_page', {
-            'event_category': 'engagement',
-            'event_label': timeOnPage + 's',
-            'value': timeOnPage
-          });
-        }
-      }, 30000);
-      
-      // Track outbound links
-      document.addEventListener('click', function(e) {
-        const link = e.target.closest('a');
-        if (link && link.hostname !== window.location.hostname) {
-          gtag('event', 'click', {
-            'event_category': 'outbound',
-            'event_label': link.href,
-            'transport_type': 'beacon'
-          });
-        }
-      });
-      
-      // Track resume downloads
-      document.addEventListener('click', function(e) {
-        const link = e.target.closest('a[download]');
-        if (link) {
-          gtag('event', 'download', {
-            'event_category': 'resume',
-            'event_label': link.getAttribute('download')
-          });
-        }
-      });
-      
-      // Track section views
-      const observerOptions = { threshold: 0.5 };
-      const sectionObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            gtag('event', 'section_view', {
-              'event_category': 'navigation',
-              'event_label': entry.target.id
-            });
-          }
-        });
-      }, observerOptions);
-      
-      document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('section[id]').forEach(function(section) {
-          sectionObserver.observe(section);
-        });
-      });
-    </script>
-    
-    <!-- Security Headers via Meta Tags -->
+    <!-- Security Meta Tags (only ones that work in meta) -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
-    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
-    <meta http-equiv="Permissions-Policy" content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()" />
-    
-    <!-- Content Security Policy - Adjust as needed for your resources -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com;" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
   </head>
   <body>
     <noscript>
@@ -189,5 +98,59 @@
     </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Google Analytics 4 - Deferred loading for better performance -->
+    <script>
+      // Load GA4 after page is interactive
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          var script = document.createElement('script');
+          script.src = 'https://www.googletagmanager.com/gtag/js?id=G-4K5Z82G3M6';
+          script.async = true;
+          document.head.appendChild(script);
+          
+          script.onload = function() {
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
+            gtag('js', new Date());
+            gtag('config', 'G-4K5Z82G3M6', {
+              page_title: document.title,
+              page_location: window.location.href,
+              anonymize_ip: true,
+              send_page_view: true
+            });
+            
+            // Track scroll depth
+            var scrollDepthMarkers = [25, 50, 75, 100];
+            var scrollDepthReached = [];
+            window.addEventListener('scroll', function() {
+              var scrollPercent = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+              scrollDepthMarkers.forEach(function(marker) {
+                if (scrollPercent >= marker && scrollDepthReached.indexOf(marker) === -1) {
+                  scrollDepthReached.push(marker);
+                  gtag('event', 'scroll_depth', {
+                    'event_category': 'engagement',
+                    'event_label': marker + '%',
+                    'value': marker
+                  });
+                }
+              });
+            }, { passive: true });
+            
+            // Track resume downloads
+            document.addEventListener('click', function(e) {
+              var link = e.target.closest('a[download]');
+              if (link) {
+                gtag('event', 'download', {
+                  'event_category': 'resume',
+                  'event_label': link.getAttribute('download')
+                });
+              }
+            });
+          };
+        }, 2000); // Delay 2 seconds after load
+      });
+    </script>
   </body>
 </html>

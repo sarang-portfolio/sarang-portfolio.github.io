@@ -176,10 +176,22 @@ function ProjectsSection() {
                 ))}
               </div>
               <div className="project-card__links">
-                <a href={project.github} className="project-card__link">
+                <a 
+                  href={project.github} 
+                  className="project-card__link"
+                  aria-label={`View ${project.title} on GitHub`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   GitHub ↗
                 </a>
-                <a href={project.live} className="project-card__link">
+                <a 
+                  href={project.live} 
+                  className="project-card__link"
+                  aria-label={`View ${project.title} live demo`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Live Demo ↗
                 </a>
               </div>
