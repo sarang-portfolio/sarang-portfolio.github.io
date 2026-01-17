@@ -1,0 +1,16 @@
+# Robots.txt for Sarang Kulkarni Portfolio
+# https://sarangkulkarni.github.io
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://sarangkulkarni.github.io/sitemap.xml
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+# Block access to development/build files
+Disallow: /*.map$
+Disallow: /node_modules/
+Disallow: /.git/
