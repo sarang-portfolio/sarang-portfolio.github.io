@@ -1,6 +1,8 @@
-import { useCallback, useEffect, useState } from 'react'
-import CosmicCanvas from './components/CosmicCanvas'
+import { lazy, Suspense, useCallback, useEffect, useState } from 'react'
 import './index.css'
+
+// Lazy load the heavy 3D component
+const CosmicCanvas = lazy(() => import('./components/CosmicCanvas'))
 
 // Navigation Component
 function Navigation() {
@@ -311,7 +313,9 @@ function App() {
     <>
       {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
       
-      <CosmicCanvas scrollProgress={scrollProgress} />
+      <Suspense fallback={<div className="canvas-container" style={{ background: '#030014' }} />}>
+        <CosmicCanvas scrollProgress={scrollProgress} />
+      </Suspense>
       
       <Navigation />
       <ProgressIndicator activeSection={activeSection} />

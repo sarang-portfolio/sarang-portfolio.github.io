@@ -72,7 +72,7 @@ function GlowingOrb({ position, color, scale = 1 }: { position: [number, number,
   return (
     <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
       <mesh ref={meshRef} position={position}>
-        <sphereGeometry args={[0.5, 32, 32]} />
+        <sphereGeometry args={[0.5, 16, 16]} />
         <meshStandardMaterial
           color={color}
           emissive={color}
@@ -153,16 +153,16 @@ function Scene({ scrollProgress }: { scrollProgress: number }) {
       <Stars
         radius={100}
         depth={50}
-        count={5000}
+        count={2000}
         factor={4}
         saturation={0}
         fade
-        speed={1}
+        speed={0.5}
       />
       
       <group ref={groupRef}>
         {/* Cosmic particles */}
-        <CosmicParticles count={800} />
+        <CosmicParticles count={400} />
         
         {/* Floating geometric shapes */}
         <FloatingGeometry />
@@ -183,7 +183,8 @@ export default function CosmicCanvas({ scrollProgress = 0 }: { scrollProgress?: 
     <div className="canvas-container">
       <Canvas
         camera={{ position: [0, 0, 8], fov: 60 }}
-        gl={{ antialias: true, alpha: true }}
+        gl={{ antialias: false, alpha: true, powerPreference: 'high-performance' }}
+        dpr={[1, 1.5]}
       >
         <Scene scrollProgress={scrollProgress} />
       </Canvas>
