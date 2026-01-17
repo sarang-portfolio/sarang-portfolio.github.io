@@ -68,8 +68,8 @@ function AboutSection() {
       <p className="about__text">
         I'm a passionate <strong>Software Developer</strong> who loves building
         elegant solutions to complex problems. With a keen eye for detail and
-        a love for clean code, I create applications that are not only functional
-        but also delightful to use.
+        a love for clean code, I create applications that are both functional
+        and delightful to use.
         <br /><br />
         When I'm not coding, you'll find me exploring new technologies,
         or diving deep into system design patterns.
